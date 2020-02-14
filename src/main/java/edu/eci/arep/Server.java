@@ -60,20 +60,21 @@ public class Server {
 			}
 			
 		request = request == null ? "/error.html" : request;
-            request = request.equals("/") ? "/index.html" : request;
+            request = request.equals("/") ? "/test.json" : request;
+            System.out.print(request);
             
             
             StringBuilder response = new StringBuilder();
     		
     		try {
     			BufferedReader reader = new BufferedReader(
-    					new FileReader(System.getProperty("user.dir") + "/src/resources/static" + request));
+    					new FileReader(System.getProperty("user.dir") + "/src/resources" + request));
     			String inputfile;
     			while ((inputfile = reader.readLine()) != null)
     				response.append(inputfile);
-    			out.println("HTTP/1.1 200 OK \r");
-    			out.println("Content-Type: text/html \r");
-    			out.println("\r");
+//    			out.println("HTTP/1.1 200 OK \r");
+//    			out.println("Content-Type: application/json \r");
+//    			out.println("\r");
     			out.println(response.toString());
 
     			reader.close();
